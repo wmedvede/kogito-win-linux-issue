@@ -1,0 +1,60 @@
+syntax = "proto2"; 
+package com.example.kpialertworkflow; 
+import "kogito-index.proto";
+import "kogito-types.proto";
+option kogito_model = "Kpialertworkflow";
+option kogito_id = "kpialertworkflow";
+
+/* @Indexed */ 
+message Alert { 
+	option java_package = "io.priax.process";
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional kogito.Date date = 1; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional int32 kpiId = 2; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional string newValue = 3; 
+}
+/* @Indexed */ 
+message AlertKpiStatusComposition { 
+	option java_package = "io.priax.process";
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional Alert alert = 1; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional KpiStatus kpiStatus = 2; 
+}
+/* @Indexed */ 
+message KpiStatus { 
+	option java_package = "io.priax.process";
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional int64 beingId = 1; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional int64 detectedAt = 2; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional int64 kpiId = 3; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional int32 kpiMaxDelay = 4; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional string newStatus = 5; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional string oldStatus = 6; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional int64 receivedAt = 7; 
+}
+/* @Indexed */ 
+message Kpialertworkflow { 
+	option java_package = "com.example";
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional Alert alert = 1; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional AlertKpiStatusComposition alertKpiStatus = 2; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string id = 3; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField
+ @VariableInfo(tags="") */ 
+	optional KpiStatus kpiStatus = 4; 
+	/* @Field(index = Index.NO, store = Store.YES) @SortableField */ 
+	optional org.kie.kogito.index.model.KogitoMetadata metadata = 5; 
+}
