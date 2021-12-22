@@ -106,7 +106,7 @@ services:
     #   mongo:
     #     condition: service_healthy
     volumes:
-      - ./persistence/test2:/home/kogito/data/protobufs/
+      - ./persistence/:/home/kogito/data/protobufs/
     environment:
       # QUARKUS_MONGODB_CONNECTION-STRING: mongodb://root:root@10.0.0.177:27017/kogito_quarkus
       KOGITO_DATA_INDEX_PROPS: -Dquarkus.mongodb.connection-string=mongodb://mongo:27017 -Dkogito.protobuf.folder=/home/kogito/data/protobufs/
