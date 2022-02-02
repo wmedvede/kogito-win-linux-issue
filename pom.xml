@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.priax</groupId>
   <artifactId>priax-workflow</artifactId>
@@ -14,25 +14,37 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.5.4.Final</quarkus.platform.version>
+    <!--    <quarkus.platform.version>2.5.4.Final</quarkus.platform.version>-->
+    <quarkus.platform.version>2.7.0.Final</quarkus.platform.version>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+    <kogito.version>2.0.0-SNAPSHOT</kogito.version>
   </properties>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
-        <artifactId>${quarkus.platform.artifact-id}</artifactId>
-        <version>${quarkus.platform.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+      <!--      <dependency>-->
+      <!--        <groupId>${quarkus.platform.group-id}</groupId>-->
+      <!--        <artifactId>${quarkus.platform.artifact-id}</artifactId>-->
+      <!--        <version>${quarkus.platform.version}</version>-->
+      <!--        <type>pom</type>-->
+      <!--        <scope>import</scope>-->
+      <!--      </dependency>-->
+
       <dependency>
         <groupId>org.kie.kogito</groupId>
         <artifactId>kogito-quarkus-bom</artifactId>
-        <version>1.14.1.Final</version>
+        <version>${kogito.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <dependency>
+        <groupId>org.kie.kogito</groupId>
+        <artifactId>kogito-bom</artifactId>
+        <version>${kogito.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
     </dependencies>
   </dependencyManagement>
   <dependencies>
@@ -70,14 +82,23 @@
       <scope>test</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-events-api</artifactId>
+    </dependency>
 
     <!-- <dependency>
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-addons-persistence-infinispan</artifactId>
     </dependency> -->
+    <!-- Deprecated -->
+    <!--    <dependency>-->
+    <!--      <groupId>org.kie.kogito</groupId>-->
+    <!--      <artifactId>kogito-addons-persistence-mongodb</artifactId>-->
+    <!--    </dependency>-->
     <dependency>
       <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-persistence-mongodb</artifactId>
+      <artifactId>kogito-addons-quarkus-persistence-mongodb</artifactId>
     </dependency>
     <!-- <dependency>
       <groupId>io.quarkus</groupId>
@@ -91,22 +112,38 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-reactive-messaging-kafka</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-quarkus-cloudevents</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-quarkus-events-smallrye</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.kogito</groupId>
-      <artifactId>kogito-addons-quarkus-process-management</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.kie.kogito</groupId>-->
+<!--      <artifactId>kogito-quarkus-processes</artifactId>-->
+<!--    </dependency>-->
+
+    <!-- Deprecated -->
+    <!--    <dependency>-->
+    <!--      <groupId>org.kie.kogito</groupId>-->
+    <!--      <artifactId>kogito-addons-quarkus-cloudevents</artifactId>-->
+    <!--    </dependency>-->
+
     <dependency>
       <groupId>org.kie.kogito</groupId>
       <artifactId>kogito-addons-quarkus-messaging</artifactId>
     </dependency>
+    <!-- Deprecated -->
+<!--    <dependency>-->
+<!--      <groupId>org.kie.kogito</groupId>-->
+<!--      <artifactId>kogito-addons-quarkus-events-smallrye</artifactId>-->
+<!--    </dependency>-->
+
+        <dependency>
+          <groupId>org.kie.kogito</groupId>
+          <artifactId>kogito-addons-quarkus-events-process</artifactId>
+        </dependency>
+
+
+    <dependency>
+      <groupId>org.kie.kogito</groupId>
+      <artifactId>kogito-addons-quarkus-process-management</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
@@ -185,7 +222,7 @@
       </properties>
     </profile>
   </profiles>
-   <distributionManagement>
+  <distributionManagement>
     <repository>
       <id>github</id>
       <name>GitHub OWNER Apache Maven Packages</name>

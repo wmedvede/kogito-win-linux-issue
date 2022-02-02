@@ -12,7 +12,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Message;
-import org.kie.kogito.cloudevents.CloudEventUtils.Mapper;
+import org.kie.kogito.event.cloudevents.utils.CloudEventUtils.Mapper;
 
 import io.cloudevents.CloudEvent;
 import io.cloudevents.core.data.PojoCloudEventData;
